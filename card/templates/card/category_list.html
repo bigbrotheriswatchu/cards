@@ -1,0 +1,24 @@
+{% extends 'card/base_card.html' %}
+
+{% block content %}
+
+    <div class="container mt-5 col-9">
+    <h2 class="">Все категории:</h2>
+    <h4 class="text-center mt-3">Всего карточек: {{ count }}</h4>
+    {% for category in categories %}
+
+
+        <div class="d-inline-block col-3 ml-5 mt-5">
+            <img src="{{ category.image.url }}" class="card-img-top" alt="">
+            <div class="card-body">
+                <h5 class="card-title">{{ category.title }}</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="{% url 'list_by_category' category_slug=category.slug %}" class="btn btn-secondary">Go somewhere</a>
+            </div>
+        </div>
+
+    {% endfor %}
+
+
+    </div>
+{% endblock %}

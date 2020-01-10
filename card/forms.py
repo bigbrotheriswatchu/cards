@@ -1,7 +1,7 @@
 from django import forms
+from .models import Cards
 from django.http import request
 
-from .models import Translate
 
 class TransForm(forms.Form):
 
@@ -9,3 +9,10 @@ class TransForm(forms.Form):
 
     def __str__(self):
         return self.title
+
+
+class CardForm(forms.ModelForm):
+
+    class Meta:
+        model = Cards
+        fields = ('category', 'slug', 'text', 'translate', 'user', )

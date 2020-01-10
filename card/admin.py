@@ -1,6 +1,18 @@
 from django.contrib import admin
-from .models import Cards, Translate
+from .models import Cards, Category
 
 # Register your models here.
-admin.site.register(Cards)
-admin.site.register(Translate)
+
+
+class CardAdmin(admin.ModelAdmin):
+    list_display = ('text', 'translate', 'slug',)
+    prepopulated_fields = {'slug': ('text',)}
+
+admin.site.register(Cards, CardAdmin)
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug',)
+    prepopulated_fields = {'slug': ('title',)}
+
+admin.site.register(Category, CategoryAdmin)

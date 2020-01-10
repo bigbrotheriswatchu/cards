@@ -1,0 +1,12 @@
+{% extends 'card/base_card.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="mt-4">Новая карточка:</h2>
+        <form method="POST" class="form-group mt-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Сохранить</button>
+        </form>
+    </div>
+{% endblock %}

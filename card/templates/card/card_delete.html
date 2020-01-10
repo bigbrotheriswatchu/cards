@@ -21,8 +21,8 @@
                     </blockquote>
                 </div>
 
-                <a class="btn btn-success mt-3" href="{% url 'card_detail' slug=card.slug %}">Проверить</a>
-
+                <a class="btn btn-danger mt-3" href="{% url 'card_delete' slug=card.slug %}">Удалить</a>
+                <a class="btn btn-success mt-3" href="{% url 'card_edit' slug=card.slug %}">Редактировать</a>
             </div>
 
 

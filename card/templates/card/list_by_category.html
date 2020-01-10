@@ -1,0 +1,35 @@
+{% extends 'card/base_card.html' %}
+
+{% block title %} {{category.title}} {% endblock %}
+
+{% block content %}
+
+    <div class="container mt-5 col-9">
+        <h2 class="text-center font-weight-bold">Карточки по категории {{ category.title }}:</h2>
+        <h4 class="text-center mt-3">Количество карточек: {{ counts }}</h4>
+        {% for cards in card %}
+
+            <div class="d-inline-block col-3 ml-5 mt-5">
+                <div class="card-header">
+
+                    <h2><a href="{% url 'list_by_category' category_slug=category.slug %}" class="text-warning">
+                        {{ cards.category }}
+                        </a>
+                    </h2>
+                </div>
+
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>Слово: {{ cards.text }}</p>
+                    </blockquote>
+                </div>
+                <a class="btn btn-success mt-3" href="{% url 'card_detail' slug=cards.slug %}">Проверить</a>
+            </div>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+
+
