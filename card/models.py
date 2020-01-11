@@ -28,6 +28,7 @@ class Cards(models.Model):
     class Meta:
         verbose_name = "Карточка"
         verbose_name_plural = "Карточки"
+        ordering = ['text']
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE,verbose_name="Категория")
     slug = models.SlugField(max_length=250, unique=True, )

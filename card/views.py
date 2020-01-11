@@ -1,9 +1,11 @@
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404, redirect
+
 from .models import Cards, Category
 from .forms import TransForm, CardForm
-from django.contrib import messages
 
+from django.contrib import messages
+from django.core.paginator import Paginator
 
 def list_of_cards_by_category(request, category_slug):
     categories = Category.objects.all()
@@ -23,17 +25,21 @@ def list_of_cards_by_category(request, category_slug):
 def card_list(request):
     search_query = request.GET.get('search', '')
 
+    cards = Cards.objects.all()
+    paginator = Paginator(cards, 3)
+
+    page_number = request.GET.get('page', 1)
+    page = paginator.get_page(page_number)
+
     if search_query:
         cards = Cards.objects.filter(text__icontains=search_query)
 
         result = search_query
 
         return render(request, 'card/search_result.html', context={'cards': cards, 'result': result })
-    else:
-        cards = Cards.objects.all()
 
     return render(request, 'card/card_list.html', context={
-        'cards': cards,
+        'cards': page,
     })
 
 
